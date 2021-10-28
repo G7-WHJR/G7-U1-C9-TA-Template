@@ -1,55 +1,50 @@
-var paddle, ball;
-var edgeTop, edgeBottom, edgeLeft, edgeRight;
+var ball;
+var edgeT,edgeR, edgeB,edgeL;
 
 function setup() {
   createCanvas(450, 400);
-
-  //paddle sprite
-  paddle = createSprite(200, 380, 100, 5);
-  paddle.shapeColor = "black";
-  paddle.immovable = true;
 
   //ball sprite
   ball = createSprite(150, 250, 15, 15);
   ball.shapeColor = "orange";
 
   //Top edge
-  edgeTop = createSprite(225, 0, 450, 5);
-  edgeTop.shapeColor = "gray";
-  edgeTop.immovable = true;
-
-  //Bottom edge
-  edgeBottom = createSprite(225, 400, 450, 5);
-  edgeBottom.shapeColor = "gray";
-  edgeBottom.immovable = true;
+  edgeT = createSprite(225, 0, 450, 5);
+  edgeT.shapeColor = "gray";
 
   //Left edge
-  edgeLeft = createSprite(0, 200, 5, 400);
-  edgeLeft.shapeColor = "gray";
-  edgeLeft.immovable = true;
+  edgeL = createSprite(0, 200, 5, 400);
+  edgeL.shapeColor = "gray";
 
   //Right edge
-  edgeRight = createSprite(450, 200, 5, 400);
-  edgeRight.shapeColor = "gray";
-  edgeRight.immovable = true;
+  edgeR = createSprite(450, 200, 5, 400);
+  edgeR.shapeColor = "gray";
 
-  //draw bricks
+  //Bottom edge
+  edgeB = createSprite(225, 400, 450, 5);
+  edgeB.shapeColor = "gray";
+
 }
 
 function draw() {
   background("honeydew");
 
   if (mouseIsPressed) {
-    ball.velocity.x = 1; // Left or Right
-    ball.velocity.y = 1; // Top to Bottom
-    ball.setSpeed(4);
+    ball.velocityX = 4; 
+    ball.velocityY = 4; 
   }
 
-  ball.bounce(edgeLeft);
-  ball.bounce(edgeRight);
-  ball.bounce(edgeBottom);
-  ball.bounce(edgeTop);
-  ball.bounce(paddle);
+  //draw bricks uisng loop:
+  
+  
+  
+  //make the ball bounce off the edges
+  ball.bounceOff(edgeL);
+  ball.bounceOff(edgeR);
+  ball.bounceOff(edgeT);
+  ball.bounceOff(edgeB);
 
   drawSprites();
 }
+
+
